@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UH HR Assistant</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #024731; /* UH green */
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.3em;
+      font-weight: bold;
+    }
+    .subtitle {
+      font-size: 0.9em;
+      font-weight: normal;
+      color: #bcd9c8;
+    }
+    .chat-container {
+      width: 90%;
+      max-width: 700px;
+      margin: 30px auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      height: 75vh;
+      overflow: hidden;
+    }
+    .chat-box {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .message {
+      margin: 10px 0;
+      padding: 10px 15px;
+      border-radius: 10px;
+      max-width: 80%;
+      line-height: 1.4;
+    }
+    .user {
+      background-color: #3C6E71;
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 0;
+    }
+    .bot {
+      background-color: #e3f0e7;
+      color: #024731;
+      align-self: flex-start;
+      border-bottom-left-radius: 0;
+    }
+    .input-area {
+      display: flex;
+      border-top: 1px solid #ccc;
+      padding: 10px;
+    }
+    input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+    }
+    button {
+      background-color: #024731;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #036644;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    University of Hawai‘i HR Assistant
+    <div class="subtitle">Ke Kulanui o Hawai‘i • Mānoa Campus</div>
+  </header>
+  <div class="chat-container">
+    <div class="chat-box" id="chatBox">
+      <div class="message bot">
+        Aloha! I’m your UH Human Resources Assistant. 
+        How can I help you today? (Ask about leave, pay, forms, or policies.)
+      </div>
+    </div>
+    <div class="input-area">
+      <input id="userInput" type="text" placeholder="Type your question..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+  <script>
+    const chatBox = document.getElementById("chatBox");
+    const userInput = document.getElementById("userInput");
+    const responses = {
+      "leave": "To request leave, log into UH Self-Service → Employee → Leave. Submit your leave request there. Supervisors will review and approve online. For Family or Medical Leave, complete Form G-1 as well.",
+      "vacation": "Vacation leave must be approved in advance by your supervisor. You can check your balance in UH Self-Service under Employee → Leave Balances.",
+      "sick": "For sick leave, report your absence to your supervisor as soon as possible and record it in UH Self-Service. If it extends beyond 3 days, a medical certificate may be required.",
+      "pay": "You can view your pay statements and tax documents in UH Self-Service → Payroll and Compensation → View Paycheck.",
+      "benefits": "UH employees have access to health, dental, vision, and retirement benefits through the Hawai‘i Employer-Union Health Benefits Trust Fund (EUTF). Visit eutf.hawaii.gov for full details.",
+      "address": "To update your mailing address, go to UH Self-Service → Personal Information → Update Address.",
+      "name": "For a legal name change, submit Form D-60 along with supporting legal documentation to the HR office.",
+      "telework": "The UH Telework Policy allows eligible employees to work remotely with supervisor approval. Submit the Telework Agreement Form found on the UH HR website.",
+      "retirement": "Employees planning to retire should contact the Employees’ Retirement System (ERS) of Hawai‘i at ers.ehawaii.gov at least 6 months before retirement.",
+      "training": "Professional development opportunities are listed on the UH HR Training webpage. You can also request approval for workshops through your department’s HR rep.",
+      "onboarding": "New hires should complete all onboarding tasks through the UH Self-Service portal and attend the HR orientation session during their first week.",
+      "default": "I’m not sure about that yet, but you can check the UH HR website at https://www.hawaii.edu/ohr/ for full policies and contact info."
+    };
+    function sendMessage() {
+      const text = userInput.value.trim();
+      if (text === "") return;
+      displayMessage(text, "user");
+      userInput.value = "";
+      setTimeout(() => {
+        const lower = text.toLowerCase();
+        let reply = "default";
+        for (let key in responses) {
+          if (lower.includes(key)) {
+            reply = key;
+            break;
+          }
+        }
+        displayMessage(responses[reply], "bot");
+      }, 600);
+    }
+    function displayMessage(text, sender) {
+      const messageDiv = document.createElement("div");
+      messageDiv.classList.add("message", sender);
+      messageDiv.textContent = text;
+      chatBox.appendChild(messageDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+</body>
+</html>
+
+</html>
