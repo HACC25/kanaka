@@ -1,0 +1,111 @@
+:root {
+  --manoa-green: #004231;
+  --uh-gold: #cba135;
+  --white: #ffffff;
+  --gray: #e9e9e9;
+  --dark-gray: #353535;
+}
+body {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--gray);
+  color: var(--dark-gray);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.chat-container {
+  width: 420px;
+  height: 620px;
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-top: 6px solid var(--manoa-green);
+}
+/* Header */
+.chat-header {
+  display: flex;
+  align-items: center;
+  background-color: var(--manoa-green);
+  color: var(--white);
+  padding: 14px;
+  gap: 10px;
+}
+.uh-logo {
+  width: 48px;
+  height: 48px;
+  background-color: var(--white);
+  border-radius: 50%;
+  object-fit: contain;
+}
+.header-text h1 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+.header-text h2 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--uh-gold);
+}
+/* Chat area */
+.chat-box {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* Messages */
+.user-message,
+.bot-message {
+  max-width: 75%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  line-height: 1.4;
+}
+.user-message {
+  background-color: var(--manoa-green);
+  color: var(--white);
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.bot-message {
+  background-color: var(--gray);
+  color: var(--dark-gray);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+/* Input bar */
+.chat-input {
+  display: flex;
+  border-top: 1px solid var(--gray);
+  background-color: var(--white);
+}
+#user-input {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+#send-btn {
+  background-color: var(--manoa-green);
+  color: var(--white);
+  border: none;
+  padding: 12px 18px;
+  cursor: pointer;
+  font-weight: 600;
+}
+#send-btn:hover {
+  background-color: var(--uh-gold);
+  color: var(--dark-gray);
+}
